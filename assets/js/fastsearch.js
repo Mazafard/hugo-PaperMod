@@ -86,9 +86,12 @@ const renderResults = (results) => {
         svg.setAttribute('stroke-width', '2');
         svg.setAttribute('stroke-linecap', 'round');
         svg.setAttribute('stroke-linejoin', 'round');
-        svg.classList.add('feather', 'feather-chevrons-right');
+        const isRTL = document.documentElement.dir === 'rtl';
+        svg.classList.add('feather', isRTL ? 'feather-chevrons-left' : 'feather-chevrons-right');
 
-        svg.innerHTML = '<polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline>';
+        svg.innerHTML = isRTL
+            ? '<polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline>'
+            : '<polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline>';
 
         const link = document.createElement('a');
         link.className = 'entry-link';
